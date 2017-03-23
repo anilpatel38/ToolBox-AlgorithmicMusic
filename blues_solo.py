@@ -52,13 +52,15 @@ curr_note = 0
 # play_note(blues_scale[curr_note], 1, beats_per_minute)
 licks = [[(1, 0.5), (2, 0.25), (3, 1), (1, 0.5)],
          [(-2, 0.25), (-1, .25), (1, 1.5), (2, 1)]]
+
+swing_lick = [[(1, 0.5 * 1.5), (3, 0.5 * 0.9), (2, 0.5 * 1.5), (-4, 0.5 * 0.9)], [(3, 0.5 * 1.5), (-2, 0.5 * 0.9), (-1, 0.5 * 1.5), (3, 0.5 * 0.9)]]
+
 for _ in range(8):
-    lick = random.choice(licks)
+    lick = random.choice(swing_lick)
     for note in lick:
         curr_note += note[0]
-
-        # if curr note is out of index range, pick a random note and continue
-        if curr_note > len(blues_scale):
-            curr_note = random.choice(range(len(blues_scale)))
         print(curr_note)
+        # if curr note is out of index range, pick a random note and continue
+        if curr_note > len(blues_scale)-1:
+            curr_note = random.choice(range(len(blues_scale)))
         play_note(blues_scale[curr_note], note[1], beats_per_minute)
